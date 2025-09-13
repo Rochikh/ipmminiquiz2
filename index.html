@@ -3,421 +3,823 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'IA avec esprit critique</title>
+    <title>Quiz Hybridation & Pédagogies Actives</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-        
-        .central-concept {
-            background: #f8f9fa;
-            padding: 40px;
-            text-align: center;
-            border-bottom: 3px solid #e9ecef;
-        }
-        
-        .loop {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .loop-item {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-weight: 600;
-            color: #2c3e50;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        
-        .loop-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .arrow {
-            color: #667eea;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        
-        .key-message {
-            background: #667eea;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-        }
-        
-        .section {
-            padding: 40px;
-            position: relative;
-        }
-        
-        .section h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-        
-        .danger {
-            background: #fff5f5;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .danger .icon {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .success {
-            background: #f0fdf4;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .success .icon {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .info {
-            background: #f0f9ff;
-            border-left: 4px solid #3498db;
-        }
-        
-        .info .icon {
-            background: #3498db;
-            color: white;
-        }
-        
-        .warning {
-            background: #fffbeb;
-            border-left: 4px solid #f39c12;
-        }
-        
-        .warning .icon {
-            background: #f39c12;
-            color: white;
-        }
-        
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
-            padding: 12px 0;
-            padding-left: 35px;
-            position: relative;
             line-height: 1.6;
         }
-        
-        li:before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 20px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: currentColor;
-            opacity: 0.5;
-        }
-        
-        .example {
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        
-        .example-label {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .example-text {
-            font-family: 'Courier New', monospace;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #667eea;
-        }
-        
-        .footer {
-            background: #2c3e50;
+
+        .quiz-header {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
             color: white;
             padding: 30px;
             text-align: center;
         }
-        
-        .principle {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            line-height: 1.6;
+
+        .quiz-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .question-container {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            display: none;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
-        
-        .signature {
+
+        .question-number {
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.95em;
+            font-weight: bold;
+            margin-right: 15px;
         }
-        
-        .cc-license {
+
+        .question-title {
+            flex: 1;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            color: #34495e;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: #3498db;
+            background: #e8f4fd;
+        }
+
+        .option.selected {
+            border-color: #3498db;
+            background: #e8f4fd;
+        }
+
+        .option.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .option.incorrect {
+            border-color: #e74c3c;
+            background: #fbeaea;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .textarea-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .textarea-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .true-false-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .true-false-option {
+            flex: 1;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .true-false-option:hover {
+            border-color: #3498db;
+            background: #e8f4fd;
+        }
+
+        .true-false-option.selected {
+            border-color: #3498db;
+            background: #e8f4fd;
+        }
+
+        .true-false-option.correct {
+            border-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .true-false-option.incorrect {
+            border-color: #e74c3c;
+            background: #fbeaea;
+        }
+
+        .justification {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-top: 15px;
+        }
+
+        .feedback {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            border-left-color: #27ae60;
+            background: #d5f4e6;
+        }
+
+        .feedback.incorrect {
+            border-left-color: #e74c3c;
+            background: #fbeaea;
+        }
+
+        .feedback.info {
+            border-left-color: #f39c12;
+            background: #fef9e7;
+        }
+
+        .feedback h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #e9ecef;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3498db;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .results {
+            padding: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-        
-        .cc-license svg {
-            height: 20px;
-            width: auto;
-            fill: white;
-        }
-        
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
+            .quiz-container {
+                margin: 10px;
             }
             
-            .loop {
+            .question-container {
+                padding: 20px;
+            }
+            
+            .controls {
                 flex-direction: column;
             }
             
-            .arrow {
-                transform: rotate(90deg);
-            }
-            
-            .signature {
+            .true-false-container {
                 flex-direction: column;
                 gap: 10px;
-            }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🧠 Utiliser l'IA avec Esprit Critique</h1>
-            <div class="subtitle">Comment transformer ChatGPT en véritable outil de réflexion</div>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Mini-quiz : Hybridation et Pédagogies Actives</h1>
+            <p>D'après nos discussions collectives (certains se retrouveront peut-être dans les questions... vous savez qui vous êtes !)</p>
         </div>
-        
-        <div class="central-concept">
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">💡 Le concept clé à comprendre</h2>
-            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
-                L'IA ne "pense" pas, elle prédit le mot suivant le plus probable selon ta question
-            </p>
-            
-            <div class="loop">
-                <div class="loop-item">Ta Question</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Contexte créé</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Réponse prédite</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Ta Question</div>
-            </div>
-            
-            <div class="key-message pulse">
-                ⚡ Tu es co-auteur·ice de chaque réponse de l'IA
-            </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
         </div>
-        
-        <div class="grid">
-            <div class="section danger">
-                <h2>
-                    <span class="icon">⚠️</span>
-                    Les pièges à éviter
-                </h2>
-                <ul>
-                    <li><strong>L'effet miroir :</strong> L'IA copie ton style et confirme tes idées</li>
-                    <li><strong>La complaisance :</strong> Elle cherche à te satisfaire plutôt qu'à être exacte</li>
-                    <li><strong>La bulle :</strong> Tu dialogues avec tes propres idées reformulées</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Piège typique</div>
-                    <div class="example-text">
-                        ❌ "J'ai raison de penser que X est vrai, non ?"<br>
-                        → L'IA va probablement confirmer
-                    </div>
+
+        <!-- Question 1 -->
+        <div class="question-container active" data-question="1">
+            <div class="question-header">
+                <div class="question-number">1</div>
+                <div class="question-title">Distinction conceptuelle</div>
+            </div>
+            <div class="question-text">
+                Selon nos échanges sur le forum, quelle est la différence principale entre multimodalité et hybridation ?
+            </div>
+            <div class="options">
+                <div class="option" data-value="a">
+                    <input type="radio" name="q1" value="a"> La multimodalité utilise le numérique, l'hybridation non
+                </div>
+                <div class="option" data-value="b">
+                    <input type="radio" name="q1" value="b"> La multimodalité varie les activités, l'hybridation crée des ponts entre elles
+                </div>
+                <div class="option" data-value="c">
+                    <input type="radio" name="q1" value="c"> La multimodalité est synchrone, l'hybridation asynchrone
+                </div>
+                <div class="option" data-value="d">
+                    <input type="radio" name="q1" value="d"> Il n'y a pas de différence, ce sont des synonymes
                 </div>
             </div>
-            
-            <div class="section success">
-                <h2>
-                    <span class="icon">✨</span>
-                    Techniques pour mieux réfléchir
-                </h2>
-                <ul>
-                    <li><strong>Demander plusieurs angles :</strong> "Donne-moi 3 façons différentes de voir ce problème"</li>
-                    <li><strong>Chercher les failles :</strong> "Où mon raisonnement pourrait être trop simple ?"</li>
-                    <li><strong>Inverser les rôles :</strong> "Quelles questions devrais-je me poser sur ce sujet ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Bonne pratique</div>
-                    <div class="example-text">
-                        ✅ "Argumente CONTRE cette idée : [ton idée]"<br>
-                        → Force l'IA à te challenger
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section info">
-                <h2>
-                    <span class="icon">🎯</span>
-                    Comment formuler tes demandes
-                </h2>
-                <ul>
-                    <li><strong>Sois précis·e :</strong> Chaque mot oriente la réponse</li>
-                    <li><strong>Impose des contraintes :</strong> "Explique comme à un·e enfant" ou "En 3 points maximum"</li>
-                    <li><strong>Varie les approches :</strong> Reformule différemment pour explorer</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Transformation utile</div>
-                    <div class="example-text">
-                        Au lieu de : "C'est quoi le marketing ?"<br>
-                        Essaie : "Compare 3 définitions contradictoires du marketing"
-                    </div>
-                </div>
-            </div>
-            
-            <div class="section warning">
-                <h2>
-                    <span class="icon">🔄</span>
-                    Créer de la friction cognitive
-                </h2>
-                <ul>
-                    <li><strong>Force la contradiction :</strong> Demande toujours un contre-argument</li>
-                    <li><strong>Multiplie les perspectives :</strong> "Comment un·e économiste, un·e philosophe et un·e ingénieur·e verraient ce problème ?"</li>
-                    <li><strong>Teste la robustesse :</strong> "Quelle est la plus grosse faiblesse de cette approche ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Question puissante</div>
-                    <div class="example-text">
-                        💪 "Si tu devais me convaincre du contraire, quels seraient tes 3 meilleurs arguments ?"
-                    </div>
-                </div>
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <p></p>
             </div>
         </div>
-        
-        <div class="footer">
-            <div class="principle">
-                <strong>🎓 Principe fondamental :</strong><br>
-                La qualité de la réponse ne dépend pas de l'intelligence de l'IA,<br>
-                mais de ta capacité à structurer des questions qui génèrent de la réflexion critique.
+
+        <!-- Question 2 -->
+        <div class="question-container" data-question="2">
+            <div class="question-header">
+                <div class="question-number">2</div>
+                <div class="question-title">Innovation vs Gadget</div>
             </div>
-            
-            <div class="signature">
-                <span><strong>Rochane Kherbouche</strong></span>
-                <div class="cc-license">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                        <circle cx="32" cy="32" r="30" fill="none" stroke="white" stroke-width="4"/>
-                        <path d="M32 15c-9.4 0-17 7.6-17 17s7.6 17 17 17c4.5 0 8.6-1.7 11.7-4.6l-4.2-3.7c-2.1 1.8-4.7 2.8-7.5 2.8-6.4 0-11.5-5.2-11.5-11.5S25.6 20.5 32 20.5c2.8 0 5.4 1 7.5 2.8l4.2-3.7C40.6 16.7 36.5 15 32 15z"/>
-                        <path d="M41 27c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 5.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5z"/>
-                    </svg>
-                    <span>CC BY-SA</span>
+            <div class="question-text">
+                Un institut équipe tous ses formateurs de tablettes depuis 3 ans. Si ces tablettes servent uniquement à consulter des PDF et faire des présentations, on peut parler d'innovation pédagogique.
+            </div>
+            <div class="true-false-container">
+                <div class="true-false-option" data-value="true">
+                    <strong>VRAI</strong>
+                </div>
+                <div class="true-false-option" data-value="false">
+                    <strong>FAUX</strong>
                 </div>
             </div>
+            <textarea class="justification" placeholder="Justifiez votre réponse en 2-3 phrases..."></textarea>
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-container" data-question="3">
+            <div class="question-header">
+                <div class="question-number">3</div>
+                <div class="question-title">Gestion des résistances</div>
+            </div>
+            <div class="question-text">
+                Une formatrice se heurte à 80 intervenants externes qui disent "on n'a pas le temps" pour faire évoluer leurs pratiques. Quelle stratégie semble la plus pertinente d'après nos discussions ?
+            </div>
+            <div class="options">
+                <div class="option" data-value="a">
+                    <input type="radio" name="q3" value="a"> Imposer une formation obligatoire sur les nouvelles technologies
+                </div>
+                <div class="option" data-value="b">
+                    <input type="radio" name="q3" value="b"> Créer des kits pédagogiques "clés en main" avec les plus motivés pour prouver l'efficacité
+                </div>
+                <div class="option" data-value="c">
+                    <input type="radio" name="q3" value="c"> Attendre que la direction impose le changement
+                </div>
+                <div class="option" data-value="d">
+                    <input type="radio" name="q3" value="d"> Abandonner et se concentrer sur les formateurs internes
+                </div>
+            </div>
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-container" data-question="4">
+            <div class="question-header">
+                <div class="question-number">4</div>
+                <div class="question-title">Adaptation aux profils</div>
+            </div>
+            <div class="question-text">
+                L'aspect inclusif de l'hybridation pour les profils variés (dys, TDA, HP) a été souligné dans nos échanges. Vous concevez une séquence sur "la gestion des conflits" pour un public mixte. Proposez une approche hybride en 3 modalités complémentaires qui prennent en compte cette diversité.
+            </div>
+            <textarea class="textarea-input" placeholder="Votre proposition d'approche hybride en 3 modalités..."></textarea>
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-container" data-question="5">
+            <div class="question-header">
+                <div class="question-number">5</div>
+                <div class="question-title">Analyse critique</div>
+            </div>
+            <div class="question-text">
+                Un collègue provoque : l'hybridation imposée par le COVID nous transforme en "cyborgs pédagogiques" et mène au désengagement. D'après nos échanges, quel est le facteur déterminant pour éviter cet écueil ?
+            </div>
+            <div class="options">
+                <div class="option" data-value="a">
+                    <input type="radio" name="q5" value="a"> Utiliser moins de technologie
+                </div>
+                <div class="option" data-value="b">
+                    <input type="radio" name="q5" value="b"> Partir des besoins réels et non des modalités
+                </div>
+                <div class="option" data-value="c">
+                    <input type="radio" name="q5" value="c"> Revenir au tout présentiel
+                </div>
+                <div class="option" data-value="d">
+                    <input type="radio" name="q5" value="d"> Former tous les apprenants au numérique
+                </div>
+            </div>
+            <div class="feedback">
+                <h4>Feedback</h4>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results">
+            <div class="score-circle">
+                <span class="score-text">0/5</span>
+            </div>
+            <h2>Quiz terminé !</h2>
+            <p class="score-message"></p>
+            <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-secondary" onclick="previousQuestion()" disabled>Précédent</button>
+            <button class="btn btn-primary" onclick="checkAnswer()">Vérifier</button>
+            <button class="btn btn-primary" onclick="nextQuestion()" style="display: none;">Suivant</button>
         </div>
     </div>
+
+    <script>
+        let currentQuestion = 1;
+        let totalQuestions = 5;
+        let answers = {};
+
+        // Correct answers and feedback
+        const correctAnswers = {
+            1: 'b',
+            2: 'false',
+            3: 'b',
+            5: 'b'
+        };
+
+        const feedbacks = {
+            1: {
+                'b': {
+                    type: 'correct',
+                    message: '✅ Correct ! Un de nos collègues a soulevé cette distinction pertinente : les CM/TD/TP de la fac sont multimodaux mais deviennent hybrides quand ils s\'articulent (le TD prépare le TP, le CM s\'appuie sur le TD, etc.). L\'hybridation, c\'est cette orchestration intelligente entre modalités.'
+                },
+                'default': {
+                    type: 'incorrect',
+                    message: '❌ Incorrect. La distinction n\'est pas technologique ou temporelle. L\'hybridation, c\'est la création de ponts et d\'articulations entre les différentes modalités d\'apprentissage. C\'est l\'orchestration qui crée la plus-value pédagogique.'
+                }
+            },
+            2: {
+                'false': {
+                    type: 'correct',
+                    message: '✅ Correct ! Comme l\'a partagé une collègue (qui se reconnaîtra !), avoir des tablettes depuis 3 ans qui servent de "substitut numérique" reste au stade de la nouveauté. L\'innovation pédagogique se mesure quand les pratiques changent vraiment, pas juste les outils.'
+                },
+                'true': {
+                    type: 'incorrect',
+                    message: '❌ Incorrect. L\'équipement technologique n\'est qu\'un moyen. Sans transformation des pratiques pédagogiques, on reste dans la nouveauté technique, pas dans l\'innovation. L\'outil doit servir le projet pédagogique, pas l\'inverse.'
+                }
+            },
+            3: {
+                'b': {
+                    type: 'correct',
+                    message: '✅ Correct ! La stratégie des kits pédagogiques a émergé de nos échanges. L\'idée du tutorat entre pairs couplée aux ressources prêtes à l\'emploi : préparer cas cliniques, questions et timing pour que les intervenants n\'aient qu\'à apporter leur expertise. L\'objectif : leur faire gagner du temps, pas en perdre.'
+                },
+                'default': {
+                    type: 'incorrect',
+                    message: '❌ Les solutions imposées ou l\'abandon ne résolvent pas le problème de fond. Il faut contourner la résistance en rendant le changement plus facile que le statu quo. Les kits prêts à l\'emploi permettent de prouver l\'efficacité sans demander d\'investissement initial lourd.'
+                }
+            },
+            4: {
+                type: 'info',
+                message: 'Plusieurs approches sont possibles. Par exemple : 1) Capsule vidéo en amont (profils auditifs/visuels), 2) Jeu de rôle en présentiel (kinesthésiques), 3) Forum réflexif post-séance (introvertis, dys qui ont besoin de temps). L\'important comme l\'a montré une collègue avec ses formations alternant théorie/cas/quiz : chaque modalité doit avoir sa fonction et accrocher des profils différents.'
+            },
+            5: {
+                'b': {
+                    type: 'correct',
+                    message: '✅ Correct ! La réponse synthétise nos discussions. Certains observent le paradoxe du distanciel (confidences + décrochage), d\'autres témoignent d\'échecs de simple transposition (visio sans repenser la pédagogie), mais l\'exemple du projet de 5 mois en crèche montre qu\'avec une réflexion sur les besoins, ça fonctionne. Comme le résume bien une prof de danse : hybridation subie vs hybridation pensée.'
+                },
+                'default': {
+                    type: 'incorrect',
+                    message: '❌ La solution n\'est ni technique ni structurelle, mais méthodologique. Ce qui distingue l\'hybridation réussie de l\'échec, c\'est la démarche : partir des besoins réels des apprenants et du contexte, puis choisir les modalités qui y répondent le mieux.'
+                }
+            }
+        };
+
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.querySelector('.progress-fill').style.width = progress + '%';
+        }
+
+        function showQuestion(questionNum) {
+            document.querySelectorAll('.question-container').forEach(q => {
+                q.classList.remove('active');
+            });
+            document.querySelector(`[data-question="${questionNum}"]`).classList.add('active');
+            
+            const prevBtn = document.querySelector('.controls .btn-secondary');
+            const checkBtn = document.querySelector('.controls .btn-primary:not([onclick="nextQuestion()"])');
+            const nextBtn = document.querySelector('.controls .btn-primary[onclick="nextQuestion()"]');
+            
+            prevBtn.disabled = questionNum === 1;
+            
+            // Reset buttons
+            checkBtn.style.display = 'inline-block';
+            nextBtn.style.display = 'none';
+            
+            updateProgress();
+        }
+
+        function checkAnswer() {
+            const questionContainer = document.querySelector(`[data-question="${currentQuestion}"]`);
+            const feedback = questionContainer.querySelector('.feedback');
+            
+            if (currentQuestion === 1) {
+                const selected = document.querySelector('input[name="q1"]:checked');
+                if (!selected) {
+                    alert('Veuillez sélectionner une réponse');
+                    return;
+                }
+                
+                const answer = selected.value;
+                answers[1] = answer;
+                
+                // Visual feedback
+                document.querySelectorAll('[data-question="1"] .option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    if (opt.dataset.value === 'b') {
+                        opt.classList.add('correct');
+                    } else if (opt.dataset.value === answer && answer !== 'b') {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                // Show feedback
+                const feedbackData = feedbacks[1][answer] || feedbacks[1]['default'];
+                feedback.className = `feedback show ${feedbackData.type}`;
+                feedback.querySelector('p').innerHTML = feedbackData.message;
+                
+            } else if (currentQuestion === 2) {
+                const selectedTF = document.querySelector('.true-false-option.selected');
+                const justification = document.querySelector('.justification').value.trim();
+                
+                if (!selectedTF) {
+                    alert('Veuillez sélectionner Vrai ou Faux');
+                    return;
+                }
+                
+                const answer = selectedTF.dataset.value;
+                answers[2] = { answer, justification };
+                
+                // Visual feedback
+                document.querySelectorAll('.true-false-option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    if (opt.dataset.value === 'false') {
+                        opt.classList.add('correct');
+                    } else if (opt.dataset.value === answer && answer !== 'false') {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                const feedbackData = feedbacks[2][answer] || feedbacks[2]['false'];
+                feedback.className = `feedback show ${feedbackData.type}`;
+                feedback.querySelector('p').innerHTML = feedbackData.message + 
+                    (justification ? `<br><br><strong>Votre justification :</strong> "${justification}"` : '');
+                
+            } else if (currentQuestion === 3) {
+                const selected = document.querySelector('input[name="q3"]:checked');
+                if (!selected) {
+                    alert('Veuillez sélectionner une réponse');
+                    return;
+                }
+                
+                const answer = selected.value;
+                answers[3] = answer;
+                
+                // Visual feedback
+                document.querySelectorAll('[data-question="3"] .option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    if (opt.dataset.value === 'b') {
+                        opt.classList.add('correct');
+                    } else if (opt.dataset.value === answer && answer !== 'b') {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                const feedbackData = feedbacks[3][answer] || feedbacks[3]['default'];
+                feedback.className = `feedback show ${feedbackData.type}`;
+                feedback.querySelector('p').innerHTML = feedbackData.message;
+                
+            } else if (currentQuestion === 4) {
+                const answer = document.querySelector(`[data-question="4"] .textarea-input`).value.trim();
+                if (!answer) {
+                    alert('Veuillez rédiger votre réponse');
+                    return;
+                }
+                
+                answers[4] = answer;
+                feedback.className = 'feedback show info';
+                feedback.querySelector('p').innerHTML = feedbacks[4].message + 
+                    `<br><br><strong>Votre proposition :</strong><br>"${answer}"`;
+                    
+            } else if (currentQuestion === 5) {
+                const selected = document.querySelector('input[name="q5"]:checked');
+                if (!selected) {
+                    alert('Veuillez sélectionner une réponse');
+                    return;
+                }
+                
+                const answer = selected.value;
+                answers[5] = answer;
+                
+                // Visual feedback
+                document.querySelectorAll('[data-question="5"] .option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                    if (opt.dataset.value === 'b') {
+                        opt.classList.add('correct');
+                    } else if (opt.dataset.value === answer && answer !== 'b') {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                const feedbackData = feedbacks[5][answer] || feedbacks[5]['default'];
+                feedback.className = `feedback show ${feedbackData.type}`;
+                feedback.querySelector('p').innerHTML = feedbackData.message;
+            }
+            
+            // Switch buttons
+            const checkBtn = document.querySelector('.controls .btn-primary:not([onclick="nextQuestion()"])');
+            const nextBtn = document.querySelector('.controls .btn-primary[onclick="nextQuestion()"]');
+            
+            checkBtn.style.display = 'none';
+            nextBtn.style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+
+        function showResults() {
+            document.querySelectorAll('.question-container').forEach(q => {
+                q.classList.remove('active');
+            });
+            document.querySelector('.controls').style.display = 'none';
+            
+            let score = 0;
+            
+            // Calculate score
+            if (answers[1] === 'b') score++;
+            if (answers[2] && answers[2].answer === 'false') score++;
+            if (answers[3] === 'b') score++;
+            if (answers[5] === 'b') score++;
+            
+            // Questions 4 gets partial credit for effort
+            const hasAnswer4 = answers[4] && answers[4].trim().length > 20;
+            if (hasAnswer4) score += 0.5;
+            
+            const finalScore = Math.round(score * 10) / 10;
+            
+            document.querySelector('.score-text').textContent = `${finalScore}/5`;
+            
+            let message = '';
+            if (finalScore >= 4.5) {
+                message = 'Excellent ! Vous avez parfaitement intégré les nuances de l\'hybridation et des pédagogies actives.';
+            } else if (finalScore >= 3.5) {
+                message = 'Très bien ! Vous maîtrisez les concepts clés, quelques nuances à affiner.';
+            } else if (finalScore >= 2.5) {
+                message = 'Bien ! Les bases sont acquises, continuez à explorer ces approches.';
+            } else {
+                message = 'Un petit retour sur nos échanges du forum vous sera utile pour approfondir ces concepts.';
+            }
+            
+            document.querySelector('.score-message').textContent = message;
+            document.querySelector('.results').classList.add('show');
+            
+            updateProgress();
+        }
+
+        function restartQuiz() {
+            currentQuestion = 1;
+            answers = {};
+            
+            // Reset all inputs and selections
+            document.querySelectorAll('input').forEach(input => {
+                input.checked = false;
+            });
+            
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.value = '';
+            });
+            
+            document.querySelectorAll('.option, .true-false-option').forEach(el => {
+                el.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.classList.remove('show', 'correct', 'incorrect', 'info');
+            });
+            
+            document.querySelector('.results').classList.remove('show');
+            document.querySelector('.controls').style.display = 'flex';
+            
+            showQuestion(1);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Question 1 - Radio buttons
+            document.querySelectorAll('[data-question="1"] .option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('[data-question="1"] .option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                });
+            });
+            
+            // Question 2 - True/False
+            document.querySelectorAll('.true-false-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.true-false-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Question 3 - Radio buttons
+            document.querySelectorAll('[data-question="3"] .option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('[data-question="3"] .option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                });
+            });
+            
+            // Question 5 - Radio buttons
+            document.querySelectorAll('[data-question="5"] .option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('[data-question="5"] .option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                });
+            });
+            
+            updateProgress();
+        });
+    </script>
 </body>
 </html>
