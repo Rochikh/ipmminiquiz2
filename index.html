@@ -293,18 +293,26 @@
             display: block;
         }
 
-        .score-circle {
+        .completion-icon {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #3498db, #2980b9);
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        .feedback-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #2c3e50;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
@@ -467,11 +475,11 @@
 
         <!-- Results -->
         <div class="results">
-            <div class="score-circle">
-                <span class="score-text">0/5</span>
+            <div class="completion-icon">
+                ✓
             </div>
             <h2>Quiz terminé !</h2>
-            <p class="score-message"></p>
+            <p class="feedback-message">Merci d'avoir participé à ce quiz basé sur nos échanges collectifs. Vos réponses témoignent de votre réflexion sur l'hybridation et les pédagogies actives. L'important n'est pas d'avoir tout "juste" mais d'avoir exploré ces concepts et de pouvoir les mobiliser dans votre pratique professionnelle.</p>
             <button class="btn btn-primary" onclick="restartQuiz()">Recommencer</button>
         </div>
 
@@ -713,37 +721,11 @@
             });
             document.querySelector('.controls').style.display = 'none';
             
-            let score = 0;
-            
-            // Calculate score
-            if (answers[1] === 'b') score++;
-            if (answers[2] && answers[2].answer === 'false') score++;
-            if (answers[3] === 'b') score++;
-            if (answers[5] === 'b') score++;
-            
-            // Questions 4 gets partial credit for effort
-            const hasAnswer4 = answers[4] && answers[4].trim().length > 20;
-            if (hasAnswer4) score += 0.5;
-            
-            const finalScore = Math.round(score * 10) / 10;
-            
-            document.querySelector('.score-text').textContent = `${finalScore}/5`;
-            
-            let message = '';
-            if (finalScore >= 4.5) {
-                message = 'Excellent ! Vous avez parfaitement intégré les nuances de l\'hybridation et des pédagogies actives.';
-            } else if (finalScore >= 3.5) {
-                message = 'Très bien ! Vous maîtrisez les concepts clés, quelques nuances à affiner.';
-            } else if (finalScore >= 2.5) {
-                message = 'Bien ! Les bases sont acquises, continuez à explorer ces approches.';
-            } else {
-                message = 'Un petit retour sur nos échanges du forum vous sera utile pour approfondir ces concepts.';
-            }
-            
-            document.querySelector('.score-message').textContent = message;
+            // Show results without any scoring
             document.querySelector('.results').classList.add('show');
             
-            updateProgress();
+            // Set progress to 100%
+            document.querySelector('.progress-fill').style.width = '100%';
         }
 
         function restartQuiz() {
